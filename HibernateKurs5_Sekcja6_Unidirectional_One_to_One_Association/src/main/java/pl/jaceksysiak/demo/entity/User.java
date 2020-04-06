@@ -26,13 +26,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "USER_ID")
 	private Long userId;
-	
-	@ElementCollection
-	@CollectionTable(name="USER_ADDRESS", joinColumns=@JoinColumn(name="USER_ID"))
-	@AttributeOverrides({@AttributeOverride(name="addressLine1", column=@Column(name="USER_ADDRESS_LINE_1")),
-		@AttributeOverride(name="addressLine2", column=@Column(name="USER_ADDRESS_LINE_2"))})
-	private List<Address> address = new ArrayList<Address>();
-	
 
 	@Column(name = "FIRST_NAME")
 	private String firstName;
@@ -165,15 +158,4 @@ public class User {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
-
-	public List<Address> getAddress() {
-		return address;
-	}
-
-	public void setAddress(List<Address> address) {
-		this.address = address;
-	}
-	
-	
- 
 }

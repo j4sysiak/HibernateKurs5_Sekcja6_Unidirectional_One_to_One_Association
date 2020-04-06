@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import pl.jaceksysiak.demo.entity.User;
-import pl.jaceksysiak.demo.entity.Address;
+import pl.jaceksysiak.demo.entity.Credential;
 
 
 public class Application_CreateData {
@@ -18,7 +18,7 @@ public class Application_CreateData {
 		SessionFactory factory = new Configuration()
 								.configure("hibernate.cfg.xml")
 								.addAnnotatedClass(User.class)
-								.addAnnotatedClass(Address.class)
+								.addAnnotatedClass(Credential.class)
 								.buildSessionFactory();
 		
 		// create session
@@ -28,17 +28,11 @@ public class Application_CreateData {
 			// start a transaction
 			session.beginTransaction();
 			
+			//Creating the Object
 			User user = new User();
 			
-			Address address = new Address();
-			Address address2 = new Address();
-			setAddressFields(address);
-			setAddressFields2(address2);
-			user.getAddress().add(address);
-			user.getAddress().add(address2);
-			setUserFields(user);
-
-			session.save(user);
+			//Saving the Object to DB
+			//session.save();
 						
 			// commit transaction
 			session.getTransaction().commit();
@@ -50,35 +44,5 @@ public class Application_CreateData {
 			factory.close();
 		}
 	}
-	
-	
-	private static void setUserFields(User user) {
-		user.setAge(22);
-		user.setBirthDate(new Date());
-		user.setCreatedBy("kmb");
-		user.setCreatedDate(new Date());
-		user.setEmailAddress("kmb385");
-		user.setFirstName("Kevin");
-		user.setLastName("bowersox");
-		user.setLastUpdatedBy("kevin");
-		user.setLastUpdatedDate(new Date());
-	}
-
-	private static void setAddressFields(Address address) {
-		address.setAddressLine1("Line 1");
-		address.setAddressLine2("Line 2");
-		address.setCity("New York");
-		address.setState("NY");
-		address.setZipCode("12345");
-	}
-
-	private static void setAddressFields2(Address address) {
-		address.setAddressLine1("Line 3");
-		address.setAddressLine2("Line 4");
-		address.setCity("Corning");
-		address.setState("NY");
-		address.setZipCode("12345");
-	}
-
 	
 }
