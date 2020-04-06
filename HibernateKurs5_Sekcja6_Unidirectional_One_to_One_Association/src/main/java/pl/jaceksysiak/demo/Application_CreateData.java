@@ -28,8 +28,25 @@ public class Application_CreateData {
 			// start a transaction
 			session.beginTransaction();
 			
-			//Creating the Object
+			//Creating the Object User
 			User user = new User();
+			user.setFirstName("Kevin");
+			user.setLastName("Bowersox");
+			user.setAge(20);
+			user.setBirthDate(new Date());
+			user.setCreatedBy("Kevin Bowersox");
+			user.setCreatedDate(new Date());
+			user.setEmailAddress("kevin.bowersox@navy.mil");
+			user.setLastUpdatedDate(new Date());
+			user.setLastUpdatedBy("Kevin Bowersox");
+
+			//Creating the Object Credential
+			Credential credential = new Credential();
+			credential.setPassword("kevinspassword");
+			credential.setUsername("kmb385");
+			credential.setUser(user);
+			
+			session.save(credential);
 			
 			//Saving the Object to DB
 			//session.save();
